@@ -1,0 +1,14 @@
+<input
+  placeholder="username"
+  class="form-control"
+  type="text"
+  [(ngModel)]="username"
+>
+
+<p>{{username}}</p>
+
+<button
+  class="btn btn-primary"
+  [disabled]="isInputEmpty()"
+  (click)="onUserCreated()"
+>Create user</button>
