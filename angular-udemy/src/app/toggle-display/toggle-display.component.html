@@ -1,0 +1,12 @@
+<button
+  class="btn btn-danger"
+  (click)="onDisplayClick()"
+>Display details</button>
+
+<p *ngIf="displayPassword">secret password</p>
+
+<p
+  *ngFor="let timestamp of toggleTimestamps; let i = index;"
+  [ngStyle]="{'background-color': getBackgroundColor(i)}"
+  [ngClass]="{white: shouldBeWhite(i)}"
+>{{timestamp}}{{i}}</p>
