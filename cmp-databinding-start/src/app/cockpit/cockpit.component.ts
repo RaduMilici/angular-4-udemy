@@ -17,12 +17,31 @@ export class CockpitComponent implements OnInit {
   ngOnInit() {
   }
 
-  onAddServer() {
-    this.serverCreated.emit({name: this.newServerName, content: this.newServerContent});
+  areInputsValid(): boolean {
+    return this.newServerName !== '' && this.newServerContent !== '';
   }
 
-  onAddBlueprint() {
-    this.blueprintCreated.emit({name: this.newServerName, content: this.newServerContent});
+  clearInputs(): void {
+    this.newServerName = this.newServerContent = '';
+  }
+
+  checkEmitClear(emit: Function): void {
+    if (this.areInputsValid()) {
+      emit();
+      this.clearInputs();
+    }
+  }
+
+  onAddServer(): void {
+    this.checkEmitClear( () => {
+      this.serverCreated.emit({name: this.newServerName, content: this.newServerContent});
+    });
+  }
+
+  onAddBlueprint(): void {
+    this.checkEmitClear( () => {
+      this.blueprintCreated.emit({name: this.newServerName, content: this.newServerContent});
+    });
   }
 
 }
